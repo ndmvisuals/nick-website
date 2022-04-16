@@ -23,7 +23,7 @@ disqusShortname = ""
   description = "Your description"
 
   # Link custom assets relative to /static
-  custom_css = []
+  custom_css = ["css/resume-style.css"]
   custom_js  = []
   favicon    = "favicon.ico"
 
@@ -46,6 +46,10 @@ disqusShortname = ""
     [[params.navigation.links]]
       name = "Home"
       url = "#"
+
+    [[params.navigation.links]]
+        name = "Resume"
+        url = "resume"
 
     
 
