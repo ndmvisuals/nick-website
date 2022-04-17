@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    list-style: none;
+    /* list-style: none; */
     font-family: 'Roboto', sans-serif;
 }
 
@@ -100,6 +100,7 @@ body {
 
 .skills ul {
     padding-top: 1.5rem;
+    list-style: none;
 }
 .skills ul li p {
     padding: .4rem 0;
@@ -109,6 +110,7 @@ body {
     display: flex;
     align-items: center;
     text-transform: uppercase;
+    
 }
 
 .referance-name {
@@ -152,6 +154,18 @@ body {
     font-size: 18px;
     letter-spacing: 1px;
     line-height: 2rem;
+}
+
+.experience-contents ul {
+
+    margin-left: 0; 
+    padding-left: 40px;
+    /* list-style: none; */
+}
+
+.experience-contents ul li {
+
+    padding: .2rem 0;
 }
 
 .experience-contents,

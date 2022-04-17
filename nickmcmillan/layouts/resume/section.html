@@ -21,43 +21,72 @@
     <!-- <link rel="stylesheet" href="/css/resume-style.css"> -->
 </head>
 <body>
+
+    {{ $sep := "," }}
+    <!-- Entries -->
+    {{ $entry_url := "/data/nicks_resume_data.csv" }}    
+    {{ $resume := getCSV $sep $entry_url }}
+
+    <!-- Skills -->
+    {{ $skills_url := "/data/nicks_resume_skills.csv" }}    
+    {{ $skills := getCSV $sep $skills_url }}
+
+    <!-- Contact -->
+    {{ $contact_url := "/data/nicks_resume_contact.csv" }}    
+    {{ $contact := getCSV $sep $contact_url }}
+
+
+
     <main class="resume-contents">
         <section class="left-section">
             <div class="left-section-contents">
                 <div class="profile">
-                    <img class="profile-image" src="img/profile-image.jpg" alt="Profile image">
-                    <p class="name">Nicklll</p>
-                    <p class="profession">Software Engineer</p>
+                    <img class="profile-image" src="/static/img/nick_profile.jpg" alt="Profile image">
+                    <p class="name">Nick McMillan</p>
+                    <p class="profession">Data and Video Journalist</p>
                 </div>
                 <div class="contact-info">
                     <p class="left-title">Contact Info</p>
+                    {{range $elem_index, $elem_val := $contact}}   
+
                     <ul>
-                        <li><i class="fa fa-phone"></i>+123456789
+                        {{ if in (index $elem_val 0) "phone" }}
+                        <li><i class="fa fa-phone"></i> {{index $elem_val 1}}
                         </li>
-                        <li><i class="fa fa-envelope"></i>loremipsum@amail.com
+                        {{end}}
+                        {{ if in (index $elem_val 0) "email" }}
+                        <li><i class="fa fa-envelope"></i>{{index $elem_val 1}}
                         </li>
-                        <li><i class="fa fa-globe"></i>lorem.ipsum.web
+                        {{end}}
+                        {{ if in (index $elem_val 0) "website" }}
+                        <li><i class="fa fa-globe"></i>{{index $elem_val 1}}
                         </li>
-                        <li><i class="fa fa-github"></i>loremipsum.github.com
+                        {{end}}
+                        {{ if in (index $elem_val 0) "github" }}
+                        <li><i class="fa fa-github"></i>{{index $elem_val 1}}
                         </li>
-                        <li><i class="fa fa-map-marker"></i>70 Dream St, USA
-                        </li>
+                        {{end}}
+                        <!-- <li><i class="fa fa-map-marker"></i>70 Dream St, USA
+                        </li> -->
                     </ul>
-                </div>
+
+                    {{end}}
+                </div>         
+                   
+                    
+                 
+
+
                 <div class="skills">
                     <p class="left-title">Skills</p>
+                    {{range $elem_index, $elem_val := $skills}}  
                     <ul>
-                        <li><p>Python, Django & Flask</p></li>
-                        <li><p>C & C++, Java</p></li>
-                        <li><p>JavaScript, Angular</p></li>
-                        <li><p>HTML5 & CSS3</p></li>
-                        <li><p>SQL, MySql</p></li>
-                        <li><p>Git & GitHub</p></li>
-                        <li><p>Linux, Bash/Shell</p></li>
+                        <li><p>{{index $elem_val 1}}</p></li>                       
                     </ul>
+                    {{end}}
                 </div>
 
-                <div class="references">
+                <!-- <div class="references">
                     <p class="left-title">References</p>
                     <div class="refer">
                         <p class="referance-name">Lorem ipsum</p>
@@ -87,13 +116,13 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
             </div>
         </section>
 
         <section class="right-section">
             <div class="right-section-contents">
-                <section class="about gap">
+                <!-- <section class="about gap">
                     <div class="right-title">About Me</div>
                     <p class="about-me-contents">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta quae aliquid ab tempore deleniti modi animi facere, 
@@ -102,92 +131,60 @@
                         <br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus temporibus velit minima assumenda atque inventore natus hic, 
                         voluptatem est explicabo voluptate vel, adipisci illum, ratione repellendus! Consequuntur veniam modi nihil.
                     </p>
-                </section>
+                </section> -->
 
                 <section class="experience gap">
                     <div class="right-title">Experience</div>
-                    <div class="experience-contents">
-                        <div class="exp-left">
-                            <p class="exp-company-name">Company one</p>
-                            <p class="exp-time-period">2016-2018</p>
-                        </div>
-                        <div class="exp-right">
-                            <p class="exp-position">position one</p>
-                            <p class="exp-desc">
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi, quo. Non provident odio nam quas praesentium! 
-                                Fugit laborum accusantium repellat?
-                            </p>
-                        </div>
-                    </div>
-                    <div class="experience-contents">
-                        <div class="exp-left">
-                            <p class="exp-company-name">Company two</p>
-                            <p class="exp-time-period">2016-2018</p>
-                        </div>
-                        <div class="exp-right">
-                            <p class="exp-position">position two</p>
-                            <p class="exp-desc">
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi, quo. Non provident odio nam quas praesentium! 
-                                Fugit laborum accusantium repellat?
-                            </p>
-                        </div>
-                    </div>
-                    <div class="experience-contents">
-                        <div class="exp-left">
-                            <p class="exp-company-name">Company three</p>
-                            <p class="exp-time-period">2016-2018</p>
-                        </div>
-                        <div class="exp-right">
-                            <p class="exp-position">position three</p>
-                            <p class="exp-desc">
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi, quo. Non provident odio nam quas praesentium! 
-                                Fugit laborum accusantium repellat?
-                            </p>
-                        </div>
-                    </div>
-                </section>
+                    {{range $elem_index, $elem_val := $resume}}                       
+                        
+                        {{ if in (index $elem_val 0) "experience" }}
+                            <div class="experience-contents">
+                                <div class="exp-left">
+                                    <p class="exp-company-name">{{index $elem_val 3}}</p>
+                                    <p class="exp-time-period">{{index $elem_val 4}}-{{index $elem_val 5}}</p>
+                                </div>
+                                <div class="exp-right">
+                                    <p class="exp-position">{{index $elem_val 1}}</p>
+                                    <ul>
+                                        {{ with (index $elem_val 6)  }}
+                                        <li>{{index $elem_val 6}}</li>
+                                        {{end}}
+                                        {{ with (index $elem_val 7)  }}
+                                        <li>{{index $elem_val 7}}</li>
+                                        {{end}}
+                                        {{ with (index $elem_val 8)  }}
+                                        <li>{{index $elem_val 8}}</li>
+                                        {{ end }}                                
+                                                                               
+                                      </ul>
+                                    <p class="exp-desc">                                        
+                                    </p>
+                                </div>
+                            </div>                            
+                        {{end}}                      
+                    {{ end }}                    
+       
 
                 <section class="education gap">
                     <div class="right-title">Education</div>
+                    {{range $elem_index, $elem_val := $resume}}
+                    {{ if in (index $elem_val 0) "education" }}
                     <div class="education-contents">
                         <div class="education-left">
-                            <p class="education-school-name">University name</p>
-                            <p class="educationp-time-period">2016-2018</p>
+                            <p class="education-school-name">{{index $elem_val 3}}</p>
+                            <p class="educationp-time-period">{{index $elem_val 4}}-{{index $elem_val 5}}</p>
                         </div>
                         <div class="education-right">
-                            <p class="education-subject">Computer Science</p>
-                            <p class="education-desc">
+                            <p class="education-subject">{{index $elem_val 1}}</p>
+                            <!-- <p class="education-desc">
                                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi, quo. Non provident odio nam quas praesentium! 
                                 Fugit laborum accusantium repellat?
-                            </p>
+                            </p> -->
                         </div>
                     </div>
-                    <div class="education-contents">
-                        <div class="education-left">
-                            <p class="education-school-name">College name</p>
-                            <p class="educationp-time-period">2016-2018</p>
-                        </div>
-                        <div class="education-right">
-                            <p class="education-subject">Science</p>
-                            <p class="education-desc">
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi, quo. Non provident odio nam quas praesentium! 
-                                Fugit laborum accusantium repellat?
-                            </p>
-                        </div>
-                    </div>
-                    <div class="education-contents">
-                        <div class="education-left">
-                            <p class="education-school-name">School name</p>
-                            <p class="educationp-time-period">2016-2018</p>
-                        </div>
-                        <div class="education-right">
-                            <p class="education-subject">Science</p>
-                            <p class="education-desc">
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi, quo. Non provident odio nam quas praesentium! 
-                                Fugit laborum accusantium repellat?
-                            </p>
-                        </div>
-                    </div>
+                    {{end}}
+                    {{end}}
+                    
                 </section>
 
                 <section class="awards gap">

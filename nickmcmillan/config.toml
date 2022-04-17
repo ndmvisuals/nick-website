@@ -26,6 +26,7 @@ disqusShortname = ""
   custom_css = ["css/resume-style.css"]
   custom_js  = []
   favicon    = "favicon.ico"
+  profile_image = "/img/nick_profile.jpg"
 
   # Just a custom image variable, please define it in .md files for content.
   image = ""
